@@ -156,6 +156,7 @@ class env(Generator):
 
         # Update Conan environment
         env_prepend("PATH", pathsep.join(bin_paths))
+        env_prepend("LIBRARY_PATH", pathsep.join(lib_paths))
         env_prepend("LD_LIBRARY_PATH", pathsep.join(lib_paths))
         env_prepend("PKG_CONFIG_PATH", pc_output_path)
         env_prepend("CMAKE_PREFIX_PATH", pathsep.join(prefix_paths))
@@ -173,6 +174,9 @@ class env(Generator):
         # Generate env.sh
         content = 'export PATH=%s:"$PATH"\n' % pathsep.join(
             '"%s"' % p for p in bin_paths
+        )
+        content += 'export LIBRARY_PATH=%s:"$LIBRARY_PATH"\n' % pathsep.join(
+            '"%s"' % p for p in lib_paths
         )
         content += 'export LD_LIBRARY_PATH=%s:"$LD_LIBRARY_PATH"\n' % pathsep.join(
             '"%s"' % p for p in lib_paths
