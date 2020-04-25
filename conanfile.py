@@ -105,7 +105,7 @@ class tools(Generator):
         # Generate executable wrappers
         bin_path = os.path.join(rootpath, "bin")
         if not os.path.isdir(bin_path):
-            return ""
+            return {}
         for exe_name in os.listdir(bin_path):
             exe_path = os.path.join(bin_path, exe_name)
             exe_out_path = os.path.join(self.output_path, exe_name)
